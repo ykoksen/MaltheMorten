@@ -11,7 +11,7 @@ namespace WindowsApp
     {
         // Create a Polyline from a set of points. Can be overridden to change behavior.
         public virtual Polyline CreatePolyline(IEnumerable<Point> points, Brush stroke = null, double thickness = 1)
-        {
+        { 
             var polyline = new Polyline
             {
                 Stroke = stroke ?? Brushes.Black,
@@ -35,18 +35,21 @@ namespace WindowsApp
 
             var poly = CreatePolyline(points, stroke, thickness);
             canvas.Children.Add(poly);
+            
         }
+
+        public Point CreatePoint(double x, double y) => new Point(x, y);
 
         // Example method that uses DrawLine. Can be used by educational code paths.
         public virtual void DrawSample(Canvas canvas)
         {
             var points = new List<Point>
             {
-                new Point(10, 10),
-                new Point(100, 50),
-                new Point(200, 120),
-                new Point(300, 80),
-                new Point(400, 200)
+                CreatePoint(10, 10),
+                CreatePoint(100, 50),
+                CreatePoint(200, 120),
+                CreatePoint(300, 80),
+                CreatePoint(400, 200)
             };
 
             DrawLine(canvas, points, Brushes.Blue, 2);
